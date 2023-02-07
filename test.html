@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        font-size: 20px;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.horizontal-center {
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+      #stopwatch {
+        margin-top: 20px;
+        animation: counter 1s ease-out forwards;
+        font-size: 36px;
+      }
+      @keyframes counter {
+        from {
+          transform: translateY(-100%);
+        }
+        to {
+          transform: translateY(0%);
+        }
+      }
+      @media (max-width: 768px) {
+        body {
+          font-size: 16px;
+        }
+      }
+      button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: white;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+
+     .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+.button2 {font-size: 20px;}
+ 
+    </style>
+  </head>
+  <body>
+     <div class="horizontal-center">
+     <h1> Day's Since</h1>
+     </div>
+
+      <div class="container" id="stopwatch"></div>
+        <div class="vertical-center">
+      <button class="button button2" id="redirect-button">Click ME</button>
+            </div>
+    </div>
+
+    <script>
+      const stopwatch = document.getElementById("stopwatch");
+      const redirectButton = document.getElementById("redirect-button");
+      let intervalId;
+      let startDate = new Date(2022, 9, 28); // October 28, 2022
+      let currentDate = new Date();
+
+      intervalId = setInterval(function() {
+        currentDate = new Date();
+        let diffTime = currentDate - startDate;
+        let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        let diffHours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+        let diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+        stopwatch.innerHTML = diffDays + " days, " + diffHours + " hours, " + diffMinutes + " minutes, and " + diffSeconds + " seconds have passed.";
+      }, 1000);
+
+      redirectButton.addEventListener("click", function() {
+        window.location.href = "letingyougo.html";
+      });
+    </script>
+  </body>
+</html>
